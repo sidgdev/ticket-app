@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  h2= title
+
+  form(method='POST' action='')
+
+    div.form-group
+      label(for='email') Update Email:
+      input#email.form-control(type='email', placeholder=user.email name='email' required='true' value=(undefined===user ? '' : user.email) )
+
+    div.form-group
+      label(for='mobile') Update Mobile:
+      input#mobile.form-control(type='text', placeholder=user.mobile name='mobile' required='true' value=(undefined===user ? '' : user.mobile) )
+
+    div.form-group
+      label(for='type') Account Type:
+      select#type.form-control(type='select' name='type' required='true' )
+        option(value="user" ) User
+        option(value="admin") Admin
+
+    div.form-group
+      label(for='team') Team:
+      select#team.form-control(type='select' name='team')
+        - teams.sort(function(a, b) {let textA = a.team_name.toUpperCase(); let textB = b.team_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+        for team in teams
+          if user
+            option(value=team._id selected=(team._id.toString()===user.team._id.toString() ? 'selected' : false) ) #{team.team_name}
+          else
+            option(value=team._id) #{team.team_name}
+        
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

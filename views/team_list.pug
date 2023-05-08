@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h2= title
+
+  ul
+    each team in team_list
+      li
+        a(href=team.url) #{team.team_name} 
+        |  - #{team.description}
+
+    else
+      li There are no teams.

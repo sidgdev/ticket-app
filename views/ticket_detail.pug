@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+  h3 Ticket ID: #{ticket.ticket_id} 
+  div(style='margin-left:20px;margin-top:20px')
+
+    h5 Date: #{ticket.date_formatted}
+    h5 Description: #{ticket.description}
+    h5 Level: #{ticket.level}
+    if ticket.assigned_team
+      h5 Assigned Team: #{ticket.assigned_team.team_name}
+    h5 Status: #{ticket.status}
+    h5 Worklog: 
+    each work in ticket.worklog
+      h5 #{work}  
+    else
+      h5 Worklog not updated yet.
+  hr
+  p
+    a(href=ticket.url+'/update') Update ticket
+  p
+    a(href=ticket.url+'/delete') Delete ticket
+    

@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h2 #{title}
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='team_name') Update Team name:
+      br
+      input#name.form-control(type='text', placeholder=team.team_name name='team_name' value=(undefined===team ? '' : team.team_name))
+      br
+      label(for='description') Update Team description:
+      br
+      input#name.form-control(type='text', placeholder='Enter team description' name='description' value=(undefined===team ? '' : team.description))
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+   br
+   ul
+    for error in errors
+     li!= error.msg

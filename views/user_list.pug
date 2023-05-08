@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h2= title
+  ul
+    each user in user_list
+      li
+        a(href=user.url) #{user.user_id}
+        |  - #{user.first_name} #{user.last_name} 
+        if user.team 
+          | - #{user.team.team_name}    
+    else
+      li There are no teams.

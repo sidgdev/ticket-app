@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h2= title
+
+  ul
+    each ticket in ticket_list
+      li
+        a(href=ticket.url) #{ticket.ticket_id}
+        if ticket.assigned_team
+          |  - #{ticket.assigned_team.team_name}
+        |  - #{ticket.date_formatted}
+
+    else
+      li There are no teams.

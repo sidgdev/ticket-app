@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h2 #{title}: #{ticket.ticket_id}
+  p Do you really want to delete this ticket?
+  form(method='POST' action='')
+    div.form-group
+      input#ticketid.form-control(type='hidden', name='ticket_id', required='true', value=ticket._id )
+    button.btn.btn-primary(type='submit') Delete

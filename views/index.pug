@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #[em Ticket Tracker], a basic Express application integrated with MongoDB  
+
+  h4 Dynamic content
+
+  p #[strong Ticket tracker statistics-]
+
+  ul
+    li #[strong Tickets:] !{ticket_count}
+    li #[strong Users:] !{user_count}
+    li #[strong Teams:] !{team_count}

@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h2 #{title}: #{team.team_name}
+  p= team.description
+  p Do you really want to delete this team?
+  form(method='POST' action='')
+    div.form-group
+      input#teamid.form-control(type='hidden', name='team_id', required='true', value=team._id )
+    button.btn.btn-primary(type='submit') Delete

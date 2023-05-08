@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  h2= title
+
+  form(method='POST' action='')
+
+    div.form-group
+      label(for='ticket_id') Ticket ID:
+      input#ticket_id.form-control(type='text', placeholder='Enter ticket ID' name='ticket_id' required='true' value=(undefined===ticket ? '' : ticket.ticket_id) )
+    
+    div.form-group
+      label(for='description') Description:
+      input#description.form-control(type='description', placeholder='Enter description' name='description' required='true' value=(undefined===user ? '' : ticket.description) )
+
+    div.form-group
+      label(for='type') Ticket Level:
+      select#type.form-control(type='select' name='level' required='true' )
+        option(value="low" ) Low
+        option(value="moderate") Moderate
+        option(value="high" ) High
+        option(value="very high") Very High
+
+    div.form-group
+      label(for='team') Team:
+      select#team.form-control(type='select' name='team')
+        - teams.sort(function(a, b) {let textA = a.team_name.toUpperCase(); let textB = b.team_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+        for team in teams
+          if ticket
+            option(value=team._id selected=(team._id.toString()===ticket.team._id.toString() ? 'selected' : false) ) #{team.team_name}
+          else
+            option(value=team._id) #{team.team_name}
+        
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

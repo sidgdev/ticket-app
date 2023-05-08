@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+  h3 Team: #{team.team_name} 
+  h4 Descirption: #{team.description}
+  div(style='margin-left:20px;margin-top:20px')
+    ul
+    each user in all_users
+      li
+        a(href=user.url) #{user.user_id}
+        |  - #{user.name}
+    else
+      li There are no users.
+  hr
+  p
+    a(href=team.url+'/update') Update team
+  
+  
+
+      

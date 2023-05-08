@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  h3 User: #{user.name} 
+  if user.type == 'admin'
+    h4 (Admin)
+  div(style='margin-left:20px;margin-top:20px')
+
+    h5 User ID: #{user.user_id}
+    h5 Email: #{user.email}
+    h5 Mobile: #{user.mobile}
+    if user.team
+      h5 Team: #{user.team.team_name}
+  hr
+  p
+    a(href=user.url+'/update') Update user
+  p
+    a(href=user.url+'/delete') Delete user
